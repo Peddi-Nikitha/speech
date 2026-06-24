@@ -1,5 +1,10 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/**/*.py": {
+      "excludeFiles": "{Abstract/**,Documents/**,basepaper/**,73.Speech Enhancement Using Residual Convolutional/**,Speech_enhancement/media/**,Speech_enhancement/static/**,**/__pycache__/**,**/*.pyc,**/*.wav,**/*.pth,**/*.rar,**/*.pptx,**/*.pdf,**/*.docx,**/*.doc}"
+    }
+  },
   "rewrites": [
     {
       "source": "/(.*)",

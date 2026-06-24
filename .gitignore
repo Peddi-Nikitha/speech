@@ -1,8 +1,26 @@
+# Project docs (keep locally, not needed on Vercel)
+Abstract/
+Documents/
+basepaper/
+73.Speech Enhancement Using Residual Convolutional/
+*.rar
+*.pptx
+*.pdf
+*.docx
+*.doc
+
+# Python
 __pycache__/
 *.py[cod]
+*.pyc
+
+# Django
 *.sqlite3
 staticfiles/
+Speech_enhancement/media/
 media/
+
+# Env
 .env
 .venv/
 venv/
