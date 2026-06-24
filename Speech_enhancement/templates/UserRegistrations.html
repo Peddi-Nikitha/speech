@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+<section class="we-do py-5" style="background-color: #f8f9fa;">
+    <div class="container">
+        <div class="we-do-details">
+            <div class="section-header text-center mb-5">
+                <h2>User Registration Form</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6">
+                    <div class="card shadow-sm p-4">
+                        <form method="post" action="{% url 'UserRegisterActions' %}" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- User Name -->
+                            <div class="form-group mb-3">
+                                <label for="id_name">User Name</label>
+                                <input type="text" name="name" id="id_name" class="form-control" required>
+                            </div>
+
+                            <!-- Login ID -->
+                            <div class="form-group mb-3">
+                                <label for="id_loginid">Login ID</label>
+                                <input type="text" name="loginid" id="id_loginid" class="form-control" required>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-3">
+                                <label for="id_password">Password</label>
+                                <input type="password" name="password" id="id_password" class="form-control" required>
+                            </div>
+
+                            <!-- Mobile -->
+                            <div class="form-group mb-3">
+                                <label for="id_mobile">Mobile</label>
+                                <input type="text" name="mobile" id="id_mobile" class="form-control" required>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-group mb-3">
+                                <label for="id_email">Email</label>
+                                <input type="email" name="email" id="id_email" class="form-control" required>
+                            </div>
+
+                            <!-- Locality -->
+                            <div class="form-group mb-3">
+                                <label for="id_locality">Locality</label>
+                                <input type="text" name="locality" id="id_locality" class="form-control" required>
+                            </div>
+
+                            <!-- Address -->
+                            <div class="form-group mb-3">
+                                <label for="id_address">Address</label>
+                                <input type="text" name="address" id="id_address" class="form-control" required>
+                            </div>
+
+                            <!-- City -->
+                            <div class="form-group mb-3">
+                                <label for="id_city">City</label>
+                                <input type="text" name="city" id="id_city" class="form-control" required>
+                            </div>
+
+                            <!-- State -->
+                            <div class="form-group mb-4">
+                                <label for="id_state">State</label>
+                                <input type="text" name="state" id="id_state" class="form-control" required>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary btn-block w-100">Register</button>
+
+                            <!-- Messages -->
+                            {% if messages %}
+                                <div class="mt-3">
+                                    {% for message in messages %}
+                                        <div class="alert alert-info">{{ message }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.we-do-details-->
+    </div><!--/.container-->
+</section>
+{% endblock %}

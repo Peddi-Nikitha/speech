@@ -1,0 +1,27 @@
+{% extends 'users/userbase.html'%}
+{%block contents%}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elephant Detection in Video</title>
+</head>
+<br><br><br><br>
+<body>
+    <center><h1>Upload a Video for Elephant Detection</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="file" name="video" accept="video/*">
+        <button type="submit">Upload</button>
+    </form></center>
+    
+    {% if detection_video_url %}
+        <h2>Detection Result:</h2>
+        <video width="640" height="480" controls>
+            <source src="{{ detection_video_url }}" type="video/*">
+            Your browser does not support the video tag.
+        </video>
+    {% endif %}
+</body>
+</html>
+
+{%endblock%}

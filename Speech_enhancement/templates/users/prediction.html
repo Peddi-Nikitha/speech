@@ -1,0 +1,121 @@
+{% extends 'users/userbase.html'%}
+{%block contents%}
+
+
+  <!DOCTYPE html>
+  <html>
+  <style>
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  input[type=submit] {
+    width: 100%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .formDiv {
+    margin: 0 200px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+  </style>
+  <body>
+  
+
+  <div class="formDiv">
+
+    <form action="{%url 'prediction'%}" method="POST">
+        <h2 align="center" style="color:rgb(50, 19, 190);font-weight:bold;">Predicted Fuel consumption: {{res}}</h2>
+
+      {% csrf_token %}
+      <label>stag</label><br>
+      <input type="number" id="fname" name="stag" min="0" required><br>
+
+      <label>gender</label><br>
+      <select name="gender" id="gender">
+        <option value="1">Male</option>
+        <option value="0">Female</option>
+      </select>
+
+      <label >age</label><br>
+      <input type="number" name="age" min="0" required ><br>
+
+      <label >industry</label><br>
+      <select name="industry" id="industry">
+        <option value="1">Retail</option>
+        <option value="2">manufacture</option>
+        <option value="3">Banks</option>
+        <option value="4">Telecom</option>
+        <option value="5">Others</option>
+      </select>
+
+      <label >profession</label><br>
+      <select name="profession" id="profession">
+        <option value="1">HR</option>
+        <option value="2">IT</option>
+        <option value="3">BusinessDevelopment</option>
+        <option value="4">Teaching</option>
+        <option value="5">Others</option>
+      </select>
+
+      <label >traffic</label>
+      <select name="traffic" id="traffic">
+        <option value="1">youjs</option>
+        <option value="2">empjs</option>
+        <option value="3">rabrecNErab</option>
+        <option value="4">advert</option>
+        <option value="5">Others</option>
+      </select>
+
+
+      <label >way</label>
+      <select name="way" id="way">
+        <option value="1">bus</option>
+        <option value="2">car</option>
+        
+        <option value="5">Others</option>
+      </select>
+
+      <label >independ</label><br>
+      <input type="number" id="lname" name="independ" min="0" max="10" required ><br>
+
+      <label >selfcontrol</label><br>
+      <input type="number" id="lname" name="selfcontrol" min="0" max="10" required ><br>
+
+      <label >anxiety</label><br>
+      <input type="number" id="lname" name="anxiety" min="0" max="10" required ><br>
+    
+      <input type="submit" value="Submit">
+    </form>
+
+    <h2 align="center" style="color:rgb(50, 19, 190);font-weight:bold;">Results: {{y_pred}}</h2>
+
+    
+  </div>
+  
+  </body>
+  </html>
+  
+  
+  
+
+
+{%endblock%}

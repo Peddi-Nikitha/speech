@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Denoising Model Training</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .loss-curve {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .metrics {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Denoising Model Training</h1>
+        
+        <form action="{% url 'train_audio_denoising' %}" method="post">
+            {% csrf_token %}
+            <label for="clean_dir">Clean Audio Directory:</label>
+            <input type="text" id="clean_dir" name="clean_dir" required>
+            
+            <label for="noisy_dir">Noisy Audio Directory:</label>
+            <input type="text" id="noisy_dir" name="noisy_dir" required>
+            
+            <label for="num_epochs">Number of Epochs:</label>
+            <input type="number" id="num_epochs" name="num_epochs" value="50" min="1">
+            
+            <label for="batch_size">Batch Size:</label>
+            <input type="number" id="batch_size" name="batch_size" value="32" min="1">
+            
+            <button type="submit">Start Training</button>
+        </form>
+
+        {% if loss_curve_url %}
+        <div class="results">
+            <h2>Training Results</h2>
+            <img src="{{ loss_curve_url }}" alt="Loss Curve" class="loss-curve">
+            <div class="metrics">
+                <p>Final Training Loss: {{ final_train_loss|floatformat:4 }}</p>
+                <p>Final Validation Loss: {{ final_val_loss|floatformat:4 }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+{% extends 'admins/adminbase.html' %}
+{% load static %}
+{% block contents %}
+
+<section class="we-do">
+    <div class="container">
+        <div class="we-do-details">
+            <div class="section-header text-center">
+                <h2>View Registered Users</h2>
+            </div>
+            <table class="table table-bordered bg-light text-dark">
+                <thead>
+                    <tr>
+                        <th>S.no</th>
+                        <th>Name</th>
+                        <th>Login ID</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Activate</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in data %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.loginid }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.status }}</td>
+
+                        <!-- Activate Button -->
+                        <td>
+                            {% if user.status != 'activated' %}
+                            <form method="post" action="{% url 'ActivaUsers' user.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Activate</button>
+                            </form>
+                            {% else %}
+                                <span class="text-success">Activated</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- Delete Button -->
+                        <td>
+                            <form method="get" action="{% url 'DeleteUsers' %}">
+                                <input type="hidden" name="uid" value="{{ user.id }}">
+                                <button type="submit" class="btn btn-primary btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {% for message in messages %}
+                <div class="alert alert-info mt-3">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}

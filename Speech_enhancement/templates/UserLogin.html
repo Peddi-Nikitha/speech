@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+{% load static %}
+<section class="we-do py-5">
+    <div class="container">
+        <div class="we-do-details">
+            <div class="section-header text-center mb-5">
+                <h2>User Login Form</h2>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm p-4">
+                        <form action="{% url 'UserLoginCheck' %}" method="POST" class="text-primary">
+                            {% csrf_token %}
+
+                            <!-- Login ID -->
+                            <div class="form-group mb-3">
+                                <label for="loginid" class="form-label">Login ID</label>
+                                <input type="text" class="form-control" name="loginid" id="loginid" required placeholder="Enter Login ID">
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group mb-4">
+                                <label for="pswd" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="pswd" id="pswd" required placeholder="Enter Password">
+                            </div>
+
+                            <!-- Login and Reset Buttons -->
+                            <div class="d-flex justify-content-between">
+                                <button class="btn btn-primary btn-lg" type="submit">Login</button>
+                                <button class="btn btn-secondary btn-lg" type="reset">Reset</button>
+                            </div>
+
+                            <!-- Form Messages -->
+                            {% if messages %}
+                            <div class="form-group mt-4">
+                                {% for message in messages %}
+                                <div class="alert alert-success">
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!--/.we-do-details-->
+    </div><!--/.container-->
+</section><!--/.we-do-->
+{% endblock %}
