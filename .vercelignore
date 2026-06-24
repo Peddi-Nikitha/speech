@@ -1,0 +1,15 @@
+Abstract/
+Documents/
+basepaper/
+73.Speech Enhancement Using Residual Convolutional/
+*.rar
+*.pptx
+*.docx
+*.doc
+*.pdf
+__pycache__/
+*.pyc
+*.pyo
+.env
+.venv/
+venv/
