@@ -1,0 +1,14 @@
+[project]
+name = "speech-enhancement"
+version = "1.0.0"
+requires-python = ">=3.12"
+dependencies = [
+    "Django>=4.0,<7",
+    "whitenoise>=6.4.0",
+]
+
+[tool.vercel]
+entrypoint = "Speech_enhancement/Speech/wsgi.py"
+
+[tool.vercel.scripts]
+build = "cd Speech_enhancement && python manage.py collectstatic --noinput && python manage.py migrate --noinput"
