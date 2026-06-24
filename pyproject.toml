@@ -8,7 +8,7 @@ dependencies = [
 ]
 
 [tool.vercel]
-entrypoint = "Speech_enhancement/Speech/wsgi.py"
+entrypoint = "Speech.wsgi:application"
 
 [tool.vercel.scripts]
-build = "cd Speech_enhancement && python manage.py collectstatic --noinput && python manage.py migrate --noinput"
+build = "python manage.py collectstatic --noinput && python manage.py migrate --noinput"
